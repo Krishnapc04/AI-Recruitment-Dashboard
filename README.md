@@ -69,6 +69,12 @@ The application integrates with the following endpoints:
 - `/api/stt/{id}` - Speech-to-text conversion
 - `/ws/stt/{id}` - WebSocket for real-time voice transcription
 
+  To run the backend locally, refer to the backend repository:
+
+🔗 [https://github.com/As-redfly/assignment](https://github.com/As-redfly/assignment)
+
+
+
 ## Deployment
 
 This application can be easily deployed to Vercel or Netlify.
