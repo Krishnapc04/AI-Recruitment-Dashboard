@@ -47,6 +47,7 @@ const Sidebar: React.FC = () => {
     { to: '/dashboard', icon: <LayoutDashboard size={20} />, label: 'Dashboard' },
     { to: '/jobs', icon: <Briefcase size={20} />, label: 'Jobs' },
     { to: '/candidates', icon: <Users size={20} />, label: 'Candidates' },
+    { to: '/referral', icon: <Users size={20} />, label: 'Referral' },
     { to: '/insights', icon: <BarChart2 size={20} />, label: 'Insights' },
     { to: '/chatbot', icon: <MessageSquare size={20} />, label: 'Chatbot' },
   ];

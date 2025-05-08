@@ -6,6 +6,7 @@ import Jobs from './pages/Jobs';
 import Candidates from './pages/Candidates';
 import Insights from './pages/Insights';
 import Chatbot from './pages/Chatbot';
+import Referral from './pages/Referral';
 import DashboardLayout from './components/layout/DashboardLayout';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path="candidates" element={<Candidates />} />
           <Route path="insights" element={<Insights />} />
           <Route path="chatbot" element={<Chatbot />} />
+          <Route path="referral" element={<Referral />} />
         </Route>
       </Routes>
     </BrowserRouter>
