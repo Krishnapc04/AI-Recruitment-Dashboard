@@ -53,7 +53,7 @@ const Login: React.FC = () => {
             >
               <Users size={28} />
             </motion.div>
-            <h1 className="text-2xl font-bold text-secondary-900">Welcome to TalentAI</h1>
+            <h1 className="text-2xl font-bold text-secondary-900">Welcome to Dokkaabi</h1>
             <p className="text-secondary-600 mt-1">Sign in to your recruiter account</p>
           </div>
           
