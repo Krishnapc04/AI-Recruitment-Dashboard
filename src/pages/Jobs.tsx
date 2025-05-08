@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Plus, Filter, Search, Calendar } from 'lucide-react';
+import { Plus, Filter, Search, Calendar, X } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import Badge from '../components/ui/Badge';
@@ -10,6 +10,15 @@ const Jobs: React.FC = () => {
   const { jobs, filteredJobs, filterJobs } = useAppStore();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const [showJobModal, setShowJobModal] = useState(false);
+  const [newJob, setNewJob] = useState({
+    title: '',
+    location: '',
+    department: '',
+    status: 'open',
+    postedDate: '',
+    deadline: '',
+  });
   
   useEffect(() => {
     filterJobs(searchQuery, selectedStatuses);
@@ -22,6 +31,20 @@ const Jobs: React.FC = () => {
       setSelectedStatuses([...selectedStatuses, status]);
     }
   };
+
+  const handleOpenModal = () => setShowJobModal(true);
+  const handleCloseModal = () => setShowJobModal(false);
+  const handleJobChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setNewJob({ ...newJob, [e.target.name]: e.target.value });
+  };
+  const handleJobSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would add logic to save the new job
+    setShowJobModal(false);
+    setNewJob({
+      title: '', location: '', department: '', status: 'open', postedDate: '', deadline: ''
+    });
+  };
   
   return (
     <div className="h-full">
@@ -30,7 +53,7 @@ const Jobs: React.FC = () => {
           <h1 className="text-2xl font-bold text-secondary-900">Job Listings</h1>
           <p className="text-secondary-600">Manage your open positions and track applicants</p>
         </div>
-        <Button icon={<Plus size={18} />}>
+        <Button icon={<Plus size={18} />} onClick={handleOpenModal}>
           Create New Job
         </Button>
       </div>
@@ -144,6 +167,52 @@ const Jobs: React.FC = () => {
           </div>
         )}
       </div>
+
+      {showJobModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <Card className="p-6 w-full max-w-sm md:max-w-lg relative overflow-y-auto max-h-[90vh]">
+            <button
+              className="absolute top-3 right-3 text-secondary-500 hover:text-secondary-700"
+              onClick={handleCloseModal}
+            >
+              <X size={20} />
+            </button>
+            <h2 className="text-lg font-semibold mb-4 text-secondary-900 dark:text-white">Create New Job</h2>
+            <form onSubmit={handleJobSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Title</label>
+                <input type="text" name="title" value={newJob.title} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Location</label>
+                <input type="text" name="location" value={newJob.location} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Department</label>
+                <input type="text" name="department" value={newJob.department} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Status</label>
+                <select name="status" value={newJob.status} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white">
+                  <option value="open">Open</option>
+                  <option value="closed">Closed</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Posted Date</label>
+                <input type="date" name="postedDate" value={newJob.postedDate} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white" required />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Deadline</label>
+                <input type="date" name="deadline" value={newJob.deadline} onChange={handleJobChange} className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white" />
+              </div>
+              <div className="flex justify-end">
+                <button type="submit" className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors">Create Job</button>
+              </div>
+            </form>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };

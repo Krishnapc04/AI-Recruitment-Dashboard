@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Briefcase, Clock, CheckCircle, BarChart, Layers } from 'lucide-react';
+import { Users, Briefcase, Clock, CheckCircle, BarChart, Layers, X } from 'lucide-react';
 import Card from '../components/ui/Card';
 import { useAppStore } from '../store/store';
 import { Link } from 'react-router-dom';
@@ -59,6 +59,21 @@ const Dashboard: React.FC = () => {
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
+  };
+  
+  const [showTaskModal, setShowTaskModal] = useState(false);
+  const [newTask, setNewTask] = useState({ name: '', date: '' });
+
+  const handleOpenModal = () => setShowTaskModal(true);
+  const handleCloseModal = () => setShowTaskModal(false);
+  const handleTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTask({ ...newTask, [e.target.name]: e.target.value });
+  };
+  const handleTaskSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would add logic to save the new task
+    setShowTaskModal(false);
+    setNewTask({ name: '', date: '' });
   };
   
   return (
@@ -201,13 +216,61 @@ const Dashboard: React.FC = () => {
           </div>
           
           <div className="mt-6">
-            <button className="w-full flex items-center justify-center py-2 text-primary-600 border border-primary-600 rounded-lg hover:bg-primary-50 transition-colors">
+            <button
+              className="w-full flex items-center justify-center py-2 text-primary-600 border border-primary-600 rounded-lg hover:bg-primary-50 transition-colors"
+              onClick={handleOpenModal}
+            >
               <Clock size={16} className="mr-2" />
               Schedule New Task
             </button>
           </div>
         </Card>
       </div>
+      {showTaskModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <Card className="p-6 w-full max-w-md relative">
+            <button
+              className="absolute top-3 right-3 text-secondary-500 hover:text-secondary-700"
+              onClick={handleCloseModal}
+            >
+              <X size={20} />
+            </button>
+            <h2 className="text-lg font-semibold mb-4 text-secondary-900 dark:text-white">Add New Task</h2>
+            <form onSubmit={handleTaskSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Task Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={newTask.name}
+                  onChange={handleTaskChange}
+                  className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-1 text-secondary-900 dark:text-white">Date</label>
+                <input
+                  type="date"
+                  name="date"
+                  value={newTask.date}
+                  onChange={handleTaskChange}
+                  className="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-white"
+                  required
+                />
+              </div>
+              <div className="flex justify-end">
+                <button
+                  type="submit"
+                  className="bg-primary-600 text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-colors"
+                >
+                  Add Task
+                </button>
+              </div>
+            </form>
+          </Card>
+        </div>
+      )}
     </div>
   );
 };
