@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Filter, X, User, Mail, Phone, MapPin, Calendar, FileText, Clock } from 'lucide-react';
+import { Search, Filter, X, User, Mail, Phone, MapPin, Calendar, FileText, Clock, CheckCircle, Hourglass, Circle } from 'lucide-react';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAppStore } from '../store/store';
@@ -249,6 +249,53 @@ const Candidates: React.FC = () => {
                     <Button variant="ghost" className="w-full" icon={<FileText size={16} />}>
                       View Resume
                     </Button>
+                  </div>
+                  
+                  {/* Application Details Stepper */}
+                  <div className="mb-8">
+                    <h3 className="text-lg font-semibold mb-4 text-secondary-900 dark:text-white">Application Details</h3>
+                    <div className="relative pl-8">
+                      {['applied', 'screening', 'interview', 'offer', 'hired'].map((stage, idx) => {
+                        const stageLabels: Record<string, string> = {
+                          applied: 'Applied',
+                          screening: 'Screening',
+                          interview: 'Interview',
+                          offer: 'HR Round',
+                          hired: 'Hired',
+                        };
+                        const currentStages = ['applied', 'screening', 'interview', 'offer', 'hired'];
+                        const currentStageIdx = currentStages.indexOf(candidate.stage);
+                        const isCompleted = idx < currentStageIdx;
+                        const isCurrent = idx === currentStageIdx;
+                        // Only show applied date for the first step
+                        const date = idx === 0 ? new Date(candidate.appliedDate).toLocaleDateString() : '';
+                        return (
+                          <div key={stage} className="flex items-start mb-4 relative">
+                            <div className="absolute left-0 top-2 w-4 flex flex-col items-center">
+                              {isCompleted ? (
+                                <CheckCircle size={22} className="text-success-500 bg-white dark:bg-[#18181b] rounded-full" />
+                              ) : isCurrent ? (
+                                <Hourglass size={22} className="text-warning-500 bg-white dark:bg-[#18181b] rounded-full" />
+                              ) : (
+                                <Circle size={22} className="text-secondary-700 dark:text-secondary-400 bg-white dark:bg-[#18181b] rounded-full" />
+                              )}
+                              {idx < 4 && (
+                                <span className="block w-px h-8 bg-secondary-300 dark:bg-secondary-700 mx-auto"></span>
+                              )}
+                            </div>
+                            <div className="ml-6">
+                              <span className={`font-semibold text-base ${isCompleted ? 'text-success-500' : isCurrent ? 'text-warning-500' : 'text-secondary-500 dark:text-secondary-400'}`}>{stageLabels[stage]}</span>
+                              <div className="text-xs text-secondary-500 italic mt-0.5">
+                                {date}
+                              </div>
+                              {isCurrent && candidate.stage === 'screening' && (
+                                <span className="inline-block ml-2 px-2 py-0.5 text-xs rounded-full bg-amber-900/30 text-amber-300 border border-amber-400">Under Review</span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </Card>
               </motion.div>
