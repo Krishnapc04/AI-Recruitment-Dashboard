@@ -77,7 +77,7 @@ The application integrates with the following endpoints:
 
 ## Deployment
 
-This application can be easily deployed to Vercel or Netlify.
+This application can be easily deployed to Vercel or Netlify. Currently it is deployed on vercel, link to hosted application be found in about section and also in Demo section of README.md 
 
 ### Demo
 
