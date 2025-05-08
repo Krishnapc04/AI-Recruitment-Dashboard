@@ -14,9 +14,9 @@ const Card: React.FC<CardProps> = ({
   clickable = false,
   onClick,
 }) => {
-  const baseClasses = 'bg-white rounded-lg shadow-sm border border-secondary-200 overflow-hidden';
+  const baseClasses = 'bg-white dark:bg-[#18181b] rounded-lg shadow-sm border border-secondary-200 dark:border-secondary-800 overflow-hidden relative dark:shadow-[0_2px_16px_rgba(0,0,0,0.45)] transition-all duration-300';
   const clickableClasses = clickable 
-    ? 'cursor-pointer hover:shadow-md transition-shadow duration-200' 
+    ? 'cursor-pointer transition-all duration-300 hover:shadow-md dark:hover:shadow-[0_4px_24px_rgba(0,0,0,0.65)]' 
     : '';
   
   return (
@@ -29,7 +29,9 @@ const Card: React.FC<CardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      {children}
+      <div className="relative z-10 text-white">
+        {children}
+      </div>
     </motion.div>
   );
 };

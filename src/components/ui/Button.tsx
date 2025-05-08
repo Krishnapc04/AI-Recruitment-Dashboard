@@ -18,15 +18,15 @@ const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseClasses = 'inline-flex items-center justify-center font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md';
+  const baseClasses = 'inline-flex items-center justify-center font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-md dark:focus:ring-offset-black';
   
   const variantClasses = {
-    primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500',
-    secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500',
-    outline: 'border border-secondary-300 bg-transparent text-secondary-700 hover:bg-secondary-50 focus:ring-secondary-500',
-    ghost: 'bg-transparent text-secondary-700 hover:bg-secondary-100 focus:ring-secondary-500',
-    success: 'bg-success-500 text-white hover:bg-success-600 focus:ring-success-500',
-    error: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-500',
+    primary: 'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 dark:bg-gradient-to-r dark:from-yellow-500 dark:via-pink-500 dark:to-violet-500 dark:hover:from-yellow-400 dark:hover:via-pink-400 dark:hover:to-violet-400 dark:shadow-[0_0_15px_rgba(236,72,153,0.3)]',
+    secondary: 'bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500 dark:bg-secondary-500 dark:hover:bg-secondary-400 dark:shadow-[0_0_15px_rgba(100,116,139,0.3)]',
+    outline: 'border border-secondary-300 dark:border-secondary-600 bg-transparent text-secondary-700 dark:text-white hover:bg-secondary-50 dark:hover:bg-secondary-800/80 focus:ring-secondary-500 dark:shadow-[0_0_15px_rgba(236,72,153,0.1)]',
+    ghost: 'bg-transparent text-secondary-700 dark:text-white hover:bg-secondary-100 dark:hover:bg-secondary-800/80 focus:ring-secondary-500',
+    success: 'bg-success-500 text-white hover:bg-success-600 focus:ring-success-500 dark:bg-success-600 dark:hover:bg-success-500 dark:shadow-[0_0_15px_rgba(16,185,129,0.3)]',
+    error: 'bg-error-500 text-white hover:bg-error-600 focus:ring-error-500 dark:bg-error-600 dark:hover:bg-error-500 dark:shadow-[0_0_15px_rgba(239,68,68,0.3)]',
   };
   
   const sizeClasses = {
@@ -35,7 +35,7 @@ const Button: React.FC<ButtonProps> = ({
     lg: 'text-base px-6 py-3',
   };
   
-  const disabledClasses = 'opacity-50 cursor-not-allowed';
+  const disabledClasses = 'opacity-50 cursor-not-allowed dark:shadow-none';
   
   const classes = `
     ${baseClasses}

@@ -12,23 +12,23 @@ interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ to, icon, label, active }) => {
+  const activeClasses =
+    'bg-blue-100 text-blue-700 dark:bg-gradient-to-r dark:from-pink-500/20 dark:via-violet-500/20 dark:to-yellow-500/20 dark:text-white dark:shadow-[0_0_15px_rgba(236,72,153,0.3)] font-semibold';
+
   return (
     <Link to={to} className="block">
       <motion.div
-        className={`flex items-center px-4 py-3 rounded-lg mb-1 transition-colors
-        ${active 
-          ? 'bg-primary-100 text-primary-700' 
-          : 'text-secondary-600 hover:bg-secondary-100'
-        }`}
+        className={`flex items-center px-4 py-3 rounded-lg mb-1 transition-all duration-300
+        ${active ? activeClasses : 'text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800/80 dark:hover:shadow-[0_0_10px_rgba(59,130,246,0.1)]'}`}
         whileHover={{ x: 4 }}
         whileTap={{ scale: 0.98 }}
       >
-        <span className="mr-3">{icon}</span>
+        <span className={`mr-3 ${active ? 'text-pink-400' : ''}`}>{icon}</span>
         <span className="font-medium">{label}</span>
         {active && (
           <motion.div
             layoutId="activeIndicator"
-            className="ml-auto w-1.5 h-6 bg-primary-600 rounded-full"
+            className="ml-auto w-1.5 h-6 bg-gradient-to-b from-yellow-400 via-pink-500 to-violet-500 rounded-full dark:shadow-[0_0_10px_rgba(236,72,153,0.4)]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
@@ -52,11 +52,11 @@ const Sidebar: React.FC = () => {
   ];
   
   return (
-    <div className="h-screen bg-white border-r border-secondary-200 w-64 flex flex-col">
+    <div className="h-screen bg-white dark:bg-black border-r border-secondary-200 dark:border-secondary-700/50 w-64 flex flex-col dark:shadow-[0_0_15px_rgba(236,72,153,0.1)]">
       <div className="p-6">
-        <h1 className="text-xl font-bold text-primary-700 flex items-center">
-          <Users size={24} className="mr-2 text-primary-600" />
-          TalentAI
+        <h1 className="text-xl font-bold text-primary-700 dark:text-white flex items-center">
+          <Users size={24} className="mr-2 text-primary-600 dark:text-pink-400" />
+          Dokkaabi
         </h1>
       </div>
       
@@ -72,7 +72,7 @@ const Sidebar: React.FC = () => {
         ))}
       </nav>
       
-      <div className="p-4 border-t border-secondary-200">
+      <div className="p-4 border-t border-secondary-200 dark:border-secondary-700/50">
         <NavItem
           to="/settings"
           icon={<Settings size={20} />}
@@ -82,7 +82,7 @@ const Sidebar: React.FC = () => {
         <button
           onClick={logout}
           className="flex items-center px-4 py-3 rounded-lg w-full text-left
-            text-secondary-600 hover:bg-secondary-100 transition-colors"
+            text-secondary-600 dark:text-secondary-300 hover:bg-secondary-100 dark:hover:bg-secondary-800/80 transition-all duration-300 dark:hover:shadow-[0_0_10px_rgba(236,72,153,0.1)]"
         >
           <LogOut size={20} className="mr-3" />
           <span className="font-medium">Logout</span>

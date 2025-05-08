@@ -116,7 +116,7 @@ const Candidates: React.FC = () => {
                         className="h-12 w-12 rounded-full object-cover mr-4"
                       />
                       <div className="flex-1">
-                        <h3 className="font-medium text-secondary-900">{candidate.name}</h3>
+                        <h3 className="font-medium text-secondary-900 dark:text-white">{candidate.name}</h3>
                         <p className="text-sm text-secondary-500">{candidate.jobTitle}</p>
                         <div className="mt-1 flex items-center text-xs text-secondary-500">
                           <MapPin size={12} className="mr-1" />
@@ -161,7 +161,7 @@ const Candidates: React.FC = () => {
               >
                 <Card className="p-6 sticky top-6">
                   <div className="flex justify-between items-start mb-6">
-                    <h2 className="text-lg font-semibold">Candidate Details</h2>
+                    <h2 className="text-lg font-semibold text-secondary-900 dark:text-white">Candidate Details</h2>
                     <button
                       onClick={() => setSelectedCandidate(null)}
                       className="text-secondary-500 hover:text-secondary-700"
@@ -176,7 +176,7 @@ const Candidates: React.FC = () => {
                       alt={candidate.name}
                       className="h-24 w-24 rounded-full object-cover mx-auto mb-4"
                     />
-                    <h3 className="text-xl font-bold text-secondary-900">{candidate.name}</h3>
+                    <h3 className="text-xl font-bold text-secondary-900 dark:text-white">{candidate.name}</h3>
                     <p className="text-secondary-600">{candidate.jobTitle}</p>
                     <div className={`inline-block px-3 py-1 text-xs font-medium rounded-full capitalize mt-2 ${getStageColor(candidate.stage)}`}>
                       {candidate.stage}
@@ -188,7 +188,7 @@ const Candidates: React.FC = () => {
                       <Mail size={18} className="text-secondary-500 mr-3" />
                       <div>
                         <p className="text-sm text-secondary-500">Email</p>
-                        <p className="font-medium">{candidate.email}</p>
+                        <p className="font-medium text-secondary-900 dark:text-white">{candidate.email}</p>
                       </div>
                     </div>
                     
@@ -196,7 +196,7 @@ const Candidates: React.FC = () => {
                       <Phone size={18} className="text-secondary-500 mr-3" />
                       <div>
                         <p className="text-sm text-secondary-500">Phone</p>
-                        <p className="font-medium">{candidate.phone}</p>
+                        <p className="font-medium text-secondary-900 dark:text-white">{candidate.phone}</p>
                       </div>
                     </div>
                     
@@ -204,7 +204,7 @@ const Candidates: React.FC = () => {
                       <MapPin size={18} className="text-secondary-500 mr-3" />
                       <div>
                         <p className="text-sm text-secondary-500">Location</p>
-                        <p className="font-medium">{candidate.location}</p>
+                        <p className="font-medium text-secondary-900 dark:text-white">{candidate.location}</p>
                       </div>
                     </div>
                     
@@ -212,7 +212,7 @@ const Candidates: React.FC = () => {
                       <Calendar size={18} className="text-secondary-500 mr-3" />
                       <div>
                         <p className="text-sm text-secondary-500">Applied Date</p>
-                        <p className="font-medium">{new Date(candidate.appliedDate).toLocaleDateString()}</p>
+                        <p className="font-medium text-secondary-900 dark:text-white">{new Date(candidate.appliedDate).toLocaleDateString()}</p>
                       </div>
                     </div>
                     
@@ -220,7 +220,7 @@ const Candidates: React.FC = () => {
                       <Clock size={18} className="text-secondary-500 mr-3" />
                       <div>
                         <p className="text-sm text-secondary-500">Experience</p>
-                        <p className="font-medium">{candidate.experience} years</p>
+                        <p className="font-medium text-secondary-900 dark:text-white">{candidate.experience} years</p>
                       </div>
                     </div>
                     

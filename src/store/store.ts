@@ -57,7 +57,7 @@ export const useAppStore = create<AppState>()(
           set({
             user: {
               id: '1',
-              name: 'Sarah Thompson',
+              name: 'Sarah',
               email: email,
               avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
               role: 'Talent Acquisition Manager',

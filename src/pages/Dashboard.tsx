@@ -17,8 +17,8 @@ const StatCard: React.FC<{
     <Card className="p-6">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-secondary-500 text-sm font-medium">{title}</p>
-          <h3 className="mt-2 text-3xl font-bold">{value}</h3>
+          <p className="text-secondary-500 text-sm font-medium text-secondary-900 dark:text-white">{title}</p>
+          <h3 className="mt-2 text-3xl font-bold text-secondary-900 dark:text-white">{value}</h3>
           {change && (
             <div className="mt-2 flex items-center">
               <span className={`text-xs font-medium ${positive ? 'text-success-500' : 'text-error-500'}`}>
@@ -65,7 +65,7 @@ const Dashboard: React.FC = () => {
     <div className="h-full">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-secondary-900">Welcome back, {user?.name.split(' ')[0] || 'Recruiter'}!</h1>
+          <h1 className="text-2xl font-bold text-secondary-900 dark:text-white">Welcome back, {user?.name.split(' ')[0] || 'Recruiter'}!</h1>
           <p className="text-secondary-600">Here's what's happening with your recruitment today.</p>
         </div>
         <div>
@@ -134,7 +134,7 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <Card className="p-6 lg:col-span-2">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold">Recent Candidates</h2>
+            <h2 className="text-lg font-semibold text-secondary-900 dark:text-white">Recent Candidates</h2>
             <Link to="/candidates" className="text-primary-600 text-sm hover:underline">View all</Link>
           </div>
           
@@ -147,7 +147,7 @@ const Dashboard: React.FC = () => {
                   className="h-10 w-10 rounded-full object-cover mr-4"
                 />
                 <div className="flex-1">
-                  <h3 className="font-medium text-secondary-900">{candidate.name}</h3>
+                  <h3 className="font-medium text-secondary-900 dark:text-white">{candidate.name}</h3>
                   <p className="text-sm text-secondary-500">{candidate.jobTitle}</p>
                 </div>
                 <div>
@@ -170,14 +170,14 @@ const Dashboard: React.FC = () => {
         
         <Card className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold">Upcoming Tasks</h2>
+            <h2 className="text-lg font-semibold text-secondary-900 dark:text-white">Upcoming Tasks</h2>
             <button className="text-primary-600 text-sm hover:underline">View all</button>
           </div>
           
           <div className="space-y-4">
             <div className="p-3 border border-secondary-200 rounded-lg">
               <div className="flex items-center justify-between">
-                <p className="font-medium">Review Applications</p>
+                <p className="font-medium text-secondary-900 dark:text-white">Review Applications</p>
                 <span className="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Today</span>
               </div>
               <p className="text-sm text-secondary-500 mt-1">5 applications for Senior Frontend Developer</p>
@@ -185,7 +185,7 @@ const Dashboard: React.FC = () => {
             
             <div className="p-3 border border-secondary-200 rounded-lg">
               <div className="flex items-center justify-between">
-                <p className="font-medium">Schedule Interviews</p>
+                <p className="font-medium text-secondary-900 dark:text-white">Schedule Interviews</p>
                 <span className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Tomorrow</span>
               </div>
               <p className="text-sm text-secondary-500 mt-1">3 candidates for Data Scientist role</p>
@@ -193,7 +193,7 @@ const Dashboard: React.FC = () => {
             
             <div className="p-3 border border-secondary-200 rounded-lg">
               <div className="flex items-center justify-between">
-                <p className="font-medium">Send Offer Letter</p>
+                <p className="font-medium text-secondary-900 dark:text-white">Send Offer Letter</p>
                 <span className="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">May 5</span>
               </div>
               <p className="text-sm text-secondary-500 mt-1">Samantha Lee - Product Manager</p>

@@ -92,7 +92,7 @@ const Jobs: React.FC = () => {
               <Card className="p-6" clickable>
                 <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-xl font-bold text-secondary-900">{job.title}</h2>
+                    <h2 className="text-xl font-bold text-secondary-900 dark:text-white">{job.title}</h2>
                     <p className="text-secondary-600 mt-1">{job.department} · {job.location}</p>
                   </div>
                   <Badge

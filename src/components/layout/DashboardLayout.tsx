@@ -13,7 +13,7 @@ const DashboardLayout: React.FC = () => {
   }
   
   return (
-    <div className="flex h-screen bg-secondary-50">
+    <div className="flex h-screen bg-secondary-50 dark:bg-secondary-900">
       <Sidebar />
       
       <div className="flex-1 flex flex-col overflow-hidden">
