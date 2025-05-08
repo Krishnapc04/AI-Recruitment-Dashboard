@@ -29,7 +29,7 @@ A modern, responsive B2B recruiting platform dashboard with AI-assisted features
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/ai-recruitment-dashboard.git
+git clone https://github.com/Krishnapc04/AI-Recruitment-Dashboard.git
 cd ai-recruitment-dashboard
 ```
 
